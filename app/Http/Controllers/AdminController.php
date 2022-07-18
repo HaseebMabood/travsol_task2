@@ -76,7 +76,7 @@ class AdminController extends Controller
         $data->password = Hash::make($request->password);
         $data->save();
 
-        return redirect('/users');
+        return redirect('/reg_users');
 
     }
 
@@ -97,8 +97,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::find($id);
         return view('admin.update',compact('user'));
     }
 
@@ -133,7 +134,7 @@ class AdminController extends Controller
         $user->address = $request->input('address');
         $user->update();
 
-         return redirect('/users');
+         return redirect('/reg_users');
 
     }
 
@@ -143,10 +144,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::find($id);
         $user->delete();
-        return redirect('/users');
+        return redirect('/reg_users');
     }
 
     public function agents_all()

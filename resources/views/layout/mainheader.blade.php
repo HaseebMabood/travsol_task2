@@ -3,7 +3,7 @@
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>A</b>LT</span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Admin</b>LTE</span>
+    <span class="logo-lg"><b>Admin</b></span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">
@@ -113,8 +113,12 @@
 
               <p>
                 {{ Auth::user()->name }} - Web Developer
-                <small>Member since {{Auth::user()->created_at->diffForhumans()}}</small>
+
+                {{-- date formate 2 types --}}
+                {{-- {{Auth::user()->created_at->diffForhumans()}} --}}
+                <small>Member since {!! date('d-M-y', strtotime(Auth::user()->created_at)) !!}</small>
               </p>
+              
             </li>
             <!-- Menu Body -->
             {{-- <li class="user-body">

@@ -63,7 +63,18 @@
           </div>
 
 
+           <div class="form-group">
+            <label for="exampleInputEmail1">Amount in Pkr/</label>
+            <input type="number" class="form-control" name="amount" min="0" value="{{$agency->amount}}"  placeholder="Enter amount" required>
+          </div>
+
       
+          <div class="form-group">
+            <label for="exampleInputEmail1">Credit limit in Pkr/</label>
+            <input type="number" class="form-control" name="credit" min="0" value="{{$agency->credit_limit}}"  placeholder="Enter credit amount" required>
+          </div>
+
+
        
       </div>
       <!-- /.box-body -->

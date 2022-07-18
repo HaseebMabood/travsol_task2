@@ -4,16 +4,18 @@
 
             <div class="pull-left image">
                 {{-- <a href="{{url('my-profile')}}"> --}}
-                     <img src="{{asset('public/upload_images/'.Auth::user()->image)}}"  class="img-circle" alt="">
+                     <img src="{{asset('public/upload_images/'.Auth::user()->image)}}"  class="img-circle" alt="" style="height: 45px;">
                 {{-- </a> --}}
             </div>
 
 
             <div class="pull-left info ">
-                <a href="{{url('my-profile')}}">
-                    <p>{{ Auth::user()->name }}</p>
+                <b >
+                <a href="{{url('my-profile')}}" style="color: rgb(137, 175, 197)">
+                    {{ Auth::user()->name }}
                 </a>
 
+            </b>
 
                 {{-- <a href="javascript:void(0)"><i class="fa fa-circle text-success"></i> Online</a> --}}
             </div>
@@ -43,7 +45,7 @@
 
 
       <li class="nav-item" >
-        <a class="nav-link {{Request::is('reg_users')?'active':''}} " href="{{url('reg_users')}}">
+        <a class="nav-link  " href="{{url('reg_users')}}">
           <i class="fa fa-users"></i> <span>Users</span>
         </a>
       </li>
@@ -71,9 +73,24 @@
 
       <li class="nav-item" >
         <a class="nav-link {{Request::is('subagencies_list')?'active':''}}" href="{{route("subagencies_list.index")}}">
-          <i class="fa fa-building"></i> <span>Sub Agencies List</span>
+          <i class="fa fa-building-o"></i> <span>Sub Agencies List</span>
         </a>
       </li>
+
+
+      <li class="nav-item" >
+        <a class="nav-link {{Request::is('index')?'active':''}}" href="{{url("index")}}">
+          <i class="fa fa-check-circle"></i> <span>Balance Requests</span>
+        </a>
+      </li>
+
+
+      <li class="nav-item" >
+        <a class="nav-link {{Request::is('credit_index')?'active':''}}" href="{{url("credit_index")}}">
+          <i class="fa fa-check-circle"></i> <span>Credit Requests</span>
+        </a>
+      </li>
+
       @endrole
 
       {{-- <li class="nav-item" {{Request::is('agency')?'active':''}}>
@@ -122,7 +139,20 @@
 
       <li class="nav-item" >
         <a class="nav-link {{Request::is('subagency')?'active':''}}" href="{{route("subagency.index")}}">
-          <i class="fa fa-building"></i> <span>Sub agency</span>
+          <i class="fa fa-building-o"></i> <span>Sub agency</span>
+        </a>
+      </li>
+
+
+      <li class="nav-item" >
+        <a class="nav-link {{Request::is('balance_req')?'active':''}}" href="{{url("balance_req")}}">
+          <i class="fa fa-envelope"></i> <span>Balance Request</span>
+        </a>
+      </li>
+
+      <li class="nav-item" >
+        <a class="nav-link {{Request::is('credit_req')?'active':''}}" href="{{url("credit_req")}}">
+          <i class="fa fa-envelope"></i> <span>Credit Request</span>
         </a>
       </li>
 

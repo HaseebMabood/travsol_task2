@@ -7,8 +7,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AgentNewController;
+use App\Http\Controllers\CreditReqController;
 use App\Http\Controllers\SubAgencyController;
+use App\Http\Controllers\BalanceReqController;
+use App\Http\Controllers\ShowCreditReqController;
 use App\Http\Controllers\SubAgencyListController;
+use App\Http\Controllers\ShowBalanceReqController;
 use App\Http\Controllers\SubAgencyUsersController;
 use App\Http\Controllers\SuperAdmin\RoleController;
 use App\Http\Controllers\SuperAdmin\PermissionController;
@@ -77,6 +81,12 @@ Route::group(['middleware' => ['role:admin']], function () {
         // Agencies resource
         Route::resource('/agencies', AgencyController::class);
 
+        // add or sub balance approval by admin
+        Route::get('/add_balance/{id}', [AgencyController::class, 'add_balance']);
+
+        // rejecting balance request
+        Route::get('/reject_req/{id}', [AgencyController::class, 'reject_req']);
+
 
         //here is all agents created by managers, show to Admin
         Route::get('/agents_all', [AdminController::class, 'agents_all']);
@@ -84,6 +94,21 @@ Route::group(['middleware' => ['role:admin']], function () {
 
         // Sub agencies list created by their respective admin
         Route::resource('/subagencies_list', SubAgencyListController::class);
+
+
+        // show balance req
+        Route::get('/index', [ShowBalanceReqController::class, 'index']);
+
+        // show credit req
+        Route::get('/credit_index', [ShowCreditReqController::class, 'credit_index']);
+
+
+         // add or sub credit approval by admin
+         Route::get('/add_credit/{id}', [CreditReqController::class, 'add_credit']);
+
+         // rejecting credit request
+         Route::get('/reject_credit_req/{id}', [CreditReqController::class, 'reject_credit_req']);
+        
 
 });
 
@@ -107,6 +132,18 @@ Route::group(['middleware' => ['role:admin']], function () {
         // Route::get('/usercreate/{id2}', [SubAgencyController::class, 'usercreate']);
         // after directing to this route then it will use the above one resource /subagencyusers for more methods i,e create,store,delete,update
 
+
+
+        // Balance management system
+        Route::get('/balance_req', [BalanceReqController::class, 'balance_req']);
+
+        Route::post('/balance_req_sent', [BalanceReqController::class, 'balance_req_sent']);
+
+
+         // Credit management system
+         Route::get('/credit_req', [CreditReqController::class, 'credit_req']);
+
+         Route::post('/credit_req_sent', [CreditReqController::class, 'credit_req_sent']);
     });
 
     //The following routes is accessable to everyone

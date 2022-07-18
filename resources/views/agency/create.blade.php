@@ -23,8 +23,8 @@
       <div class="box-body">
 
         <div class="form-group">
-            <label for="exampleInputEmail1">Name</label>
-            <input type="text" class="form-control" name="name" id="" placeholder="Enter name" required>
+            <label for="exampleInputEmail1">Agency Name</label>
+            <input type="text" class="form-control" name="name" id="" placeholder="Enter agency name" required>
           </div>
 
         <div class="form-group">
@@ -60,6 +60,15 @@
              </select>
           </div>
 
+          <div class="form-group">
+            <label for="exampleInputEmail1">Amount in Pkr/</label>
+            <input type="number" class="form-control" name="amount" min="0"  placeholder="Enter amount" required>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Credit limit in Pkr/</label>
+            <input type="number" class="form-control" name="credit" min="0"  placeholder="Enter credit amount" required>
+          </div>
 
       
        

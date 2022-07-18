@@ -46,7 +46,7 @@ class PermissionController extends Controller
      */
     public function store(Request $request){
         
-        $validated = $request->validate(['name' => 'required']);
+        $validated = $request->validate(['name' => 'required','slug' => 'required']);
         Permission::create($validated);
          return redirect('/permissions')->with('success', 'Permission created successfully!');
      }
@@ -81,7 +81,7 @@ class PermissionController extends Controller
      */
     public function update(Request $request,Permission $permission){
             
-        $validated = $request->validate(['name' => ['required','min:3']]);
+        $validated = $request->validate(['name' => ['required','min:3'], 'slug' => 'required']);
         $permission->update($validated);
          return redirect('/permissions')->with('success', 'Role updated successfully!');
     }

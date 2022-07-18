@@ -13,7 +13,7 @@
 @section('content')
 <section class="content">
     <div class="row ">
-      <div class="col-xs-8">
+      <div class="col-xs-12">
         <div class="box ">
 
             <div class="box-header">
@@ -34,6 +34,10 @@
                         <input type="text" class="form-control" name="name" id="r_name" placeholder="Give Permission" value="{{$permission->name}}" required>
                       </div>
             
+                      <div class="form-group">
+                        <label for="">Slug</label>
+                        <input type="text" class="form-control" name="slug" id="" placeholder="Slug name" value="{{$permission->slug}}" required>
+                      </div>
                    
                   </div>
                   <!-- /.box-body -->

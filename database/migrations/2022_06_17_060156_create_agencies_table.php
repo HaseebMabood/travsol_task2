@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('Location');
             $table->string('Contact_no');
             $table->string('manager_id')->nullable();
+            $table->string('amount');
+            $table->string('credit_limit');
             // $table->foreignId('manager_id')->references('id')->on('users');
             $table->timestamps();
         });

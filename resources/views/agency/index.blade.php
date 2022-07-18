@@ -31,7 +31,10 @@
                 <th>License No</th>
                 <th>Location</th>
                 <th>Contact_no </th>
-                <th>Agency Admin_id </th>
+                <th>Amount</th>
+                <th>Credit Limit</th>
+                {{-- <th>Agency Admin</th> --}}
+                {{-- <th>Agency Admin_id </th> --}}
 
                 <th>Action</th>
 
@@ -48,7 +51,10 @@
                     <td>{{$agency->license_no}}</td>
                     <td>{{$agency->Location}}</td>
                     <td>{{$agency->Contact_no}}</td>
-                    <td>{{$agency->manager_id}}</td>
+                    <th>{{$agency->amount}}</th>
+                    <th>{{$agency->credit_limit}}</th>
+                    {{-- <th>{{}}</th> --}}
+                    {{-- <td>{{$agency->manager_id}}</td> --}}
 
 
 

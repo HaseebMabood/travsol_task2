@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Agency;
+use App\Models\BalanceRequest;
 use Illuminate\Http\Request;
 
 class AgencyController extends Controller
@@ -24,6 +25,8 @@ class AgencyController extends Controller
     public function index()
     {
         $agencies = Agency::all();
+        // $agency_admin = User::where('id',$agencies->manager_id)->first();
+        // dd($agency_admin);
         return view('agency.index',compact("agencies"));
     }
 
@@ -54,6 +57,8 @@ class AgencyController extends Controller
         $data->Location = $request->location;
         $data->Contact_no = $request->contact;
         $data->manager_id = $request->manager;
+        $data->amount = $request->amount;
+        $data->credit_limit = $request->credit;
         // dd($data);
         $data->save();
 
@@ -109,6 +114,8 @@ class AgencyController extends Controller
         $agency->Location = $request->location;
         $agency->Contact_no = $request->contact;
         $agency->manager_id = $request->manager;
+        $agency->amount = $request->amount;
+        $agency->credit_limit = $request->credit;
         $agency->update();
 
         return redirect('/agencies')->with('success','Agency updated successfully!');
@@ -124,5 +131,63 @@ class AgencyController extends Controller
     {
         $agency->delete();
         return redirect('/agencies')->with('success','Agency deleted successfully!');
+    }
+
+
+    public function add_balance($id)
+    {
+        
+        $data = BalanceRequest::find($id);
+        $d = Agency::where('id', $data->agency_id)->first();
+        // dd($data->status); //okk
+        // dd($d);
+        // dd($data);//okk
+        // dd($data->req_amount); //okk
+        if($data->balance_req_type=='add'){
+
+            $deposit = $d->amount + $data->req_amount;
+            // dd($deposit); //jur shee
+            $d->amount = $deposit;
+            $d->update();
+
+     //now updating status to 1
+
+           $data->status = '1';
+            $data->update();
+            // dd($data); //okk
+         
+            return redirect()->back()->with('success','Balance added successfully!');
+        }
+        else if($data->balance_req_type=='subt'){
+            $deposit = $d->amount - $data->req_amount;
+            // dd($deposit); //jur shee
+            $d->amount = $deposit;
+            $d->update();
+
+            //now updating status to 1
+
+            $data->status = '1';
+            $data->update();
+           // dd($data); //okk
+            return redirect()->back()->with('success','Balance subtracted successfully!');
+        }
+        // return redirect('/agencies')->with('success','Agency deleted successfully!');
+    }
+
+
+    // Reject balance request
+
+
+    public function reject_req($id)
+    {
+        
+        $data = BalanceRequest::find($id);
+   
+           $data->status = '2';
+            $data->update();
+            // dd($data); //okk
+         
+            return redirect()->back()->with('error','Balance request rejected!');
+      
     }
 }
