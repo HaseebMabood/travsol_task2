@@ -2,15 +2,21 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgencyController;
+use App\Http\Controllers\MarkupController;
+use App\Http\Controllers\HsliderController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AgentNewController;
+use App\Http\Controllers\PagesCmsController;
 use App\Http\Controllers\CreditReqController;
 use App\Http\Controllers\SubAgencyController;
 use App\Http\Controllers\BalanceReqController;
+use App\Http\Controllers\HomeSliderController;
 use App\Http\Controllers\ShowCreditReqController;
+
 use App\Http\Controllers\SubAgencyListController;
 use App\Http\Controllers\ShowBalanceReqController;
 use App\Http\Controllers\SubAgencyUsersController;
@@ -49,6 +55,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('reg_users', AdminController::class);
 
+// Route::get('/test', function(){
+//     dd("testing");
+// });
 
 //Spatie Middleware for route protection
 Route::group(['middleware' => ['role:admin']], function () {
@@ -108,7 +117,33 @@ Route::group(['middleware' => ['role:admin']], function () {
 
          // rejecting credit request
          Route::get('/reject_credit_req/{id}', [CreditReqController::class, 'reject_credit_req']);
-        
+
+
+
+                // Integration with rukhsar start
+                // Route::get('/test', [HomeSliderController::class, 'testing']);
+
+        Route::get('/Home_slider', [HsliderController::class, 'index']);
+        Route::post('add_slider', [HsliderController::class, 'add_slider']);
+        Route::get('/edit_slider/{id}', [HsliderController::class, 'edit_slider']);
+        Route::get('/update_slider/{id}', [HsliderController::class, 'update_slider']);
+        Route::get('delete_slider/{id}', [HsliderController::class, 'delete_slider']);
+
+
+        Route::get('/pages_content', [PagesCmsController::class, 'index']);
+        Route::post('/add_content', [PagesCmsController::class, 'store_content']);
+        Route::get('/edit_content/{id}', [PagesCmsController::class, 'edit_content']);
+        Route::get('/update_content/{id}', [PagesCmsController::class, 'update_content']);
+        Route::get('delete_content/{id}', [PagesCmsController::class, 'delete_content']);
+
+
+        Route::get('/markups', [MarkupController::class, 'index']);
+        Route::post('/add_markup', [MarkupController::class, 'store_markup']);
+        Route::get('/edit_markup/{id}', [MarkupController::class, 'edit_markup']);
+        Route::get('/update_markup/{id}', [MarkupController::class, 'update_markup']);
+        Route::get('delete_markup/{id}', [MarkupController::class, 'delete_markup']);
+
+        // Integration with rukhsar end
 
 });
 
@@ -153,12 +188,23 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::put('/profile-update/{id}', [UserController::class, 'update_profile']);
 
 
-
-
-
-
-
-
-
     // Manager resource ....Here we will show the Agency related to corressponding manager../Specific agency accessable by their relavant manager
     Route::resource('/agency', ManagerController::class);
+
+
+    //Clear route cache
+ Route::get('/clear-caches', function() {
+    
+    Artisan::call('route:cache');
+
+    Artisan::call('config:cache');
+
+    Artisan::call('cache:clear');
+
+    Artisan::call('view:clear');
+
+    Artisan::call('optimize:clear');
+
+    // swal("Good job!", "You clicked the button!", "success");
+    return 'All caches cleared';
+});

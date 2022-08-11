@@ -91,6 +91,29 @@
         </a>
       </li>
 
+
+        {{-- Rukhsar integration start --}}
+
+    
+        
+            <li class="nav-item" {{Request::is('Home_slider')?'active':''}}>
+            <a class="nav-link" href="{{url('/Home_slider')}}">
+              <i class="fa fa-user"></i> <span>Home Slider</span>
+            </a>
+          </li>
+          <li class="nav-item" {{Request::is('pages_content')?'active':''}}>
+            <a class="nav-link" href="{{url('pages_content')}}">
+              <i class="fa fa-user"></i> <span>Pages Content CMS</span>
+            </a>
+          </li>
+          <li class="nav-item" {{Request::is('markups')?'active':''}}>
+            <a class="nav-link" href="{{url('markups')}}">
+              <i class="fa fa-user"></i> <span>Mark Ups</span>
+            </a>
+          </li>
+    
+          {{-- Rukhsar integration end --}}
+
       @endrole
 
       {{-- <li class="nav-item" {{Request::is('agency')?'active':''}}>
@@ -101,7 +124,7 @@
 
 
       {{-- These are the agents relevant to a specific agency admin who created them --}}
-  
+
       {{-- @role('agency admin')
       <li class="nav-item" >
         <a class="nav-link {{Request::is('agents_new')?'active':''}}" href="{{route("agents_new.index")}}">
@@ -112,7 +135,7 @@
 
 
       {{-- These are all the Agents created by individual agency admins--}}
-    
+
       {{-- @role('admin')
       <li class="nav-item" >
         <a class="nav-link {{Request::is('agents_all')?'active':''}}" href="{{url("/agents_all")}}">
@@ -157,6 +180,9 @@
       </li>
 
       @endrole
+
+    
+
 {{--
       <li class="treeview">
         <a href="#">

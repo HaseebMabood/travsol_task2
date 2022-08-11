@@ -15,6 +15,10 @@
      folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="{{asset('../../dist/css/skins/_all-skins.min.css')}}">
 
+{{-- this jquery file is needed to put here bcoz the header file is loaded first of all so then its not make unloading error --}}
+<script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
+
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
