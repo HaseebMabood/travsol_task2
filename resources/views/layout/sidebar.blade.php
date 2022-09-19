@@ -78,7 +78,7 @@
       </li>
 
 
-      <li class="nav-item" >
+      {{-- <li class="nav-item" >
         <a class="nav-link {{Request::is('index')?'active':''}}" href="{{url("index")}}">
           <i class="fa fa-check-circle"></i> <span>Balance Requests</span>
         </a>
@@ -89,13 +89,20 @@
         <a class="nav-link {{Request::is('credit_index')?'active':''}}" href="{{url("credit_index")}}">
           <i class="fa fa-check-circle"></i> <span>Credit Requests</span>
         </a>
+      </li> --}}
+
+      {{-- Merging the above two credit/balance --}}
+      <li class="nav-item" >
+        <a class="nav-link {{Request::is('amount_requests')?'active':''}}" href="{{url("amount_requests")}}">
+          <i class="fa fa-check-circle"></i> <span>Amount Requests</span>
+        </a>
       </li>
 
 
         {{-- Rukhsar integration start --}}
 
-    
-        
+
+
             <li class="nav-item" {{Request::is('Home_slider')?'active':''}}>
             <a class="nav-link" href="{{url('/Home_slider')}}">
               <i class="fa fa-user"></i> <span>Home Slider</span>
@@ -111,7 +118,7 @@
               <i class="fa fa-user"></i> <span>Mark Ups</span>
             </a>
           </li>
-    
+
           {{-- Rukhsar integration end --}}
 
       @endrole
@@ -167,7 +174,7 @@
       </li>
 
 
-      <li class="nav-item" >
+      {{-- <li class="nav-item" >
         <a class="nav-link {{Request::is('balance_req')?'active':''}}" href="{{url("balance_req")}}">
           <i class="fa fa-envelope"></i> <span>Balance Request</span>
         </a>
@@ -177,11 +184,20 @@
         <a class="nav-link {{Request::is('credit_req')?'active':''}}" href="{{url("credit_req")}}">
           <i class="fa fa-envelope"></i> <span>Credit Request</span>
         </a>
+      </li> --}}
+
+
+      {{-- Merging the above two credit and balance --}}
+
+      <li class="nav-item" >
+        <a class="nav-link {{Request::is('amount_req')?'active':''}}" href="{{url("amount_req")}}">
+          <i class="fa fa-envelope"></i> <span>Amount Request</span>
+        </a>
       </li>
 
       @endrole
 
-    
+
 
 {{--
       <li class="treeview">

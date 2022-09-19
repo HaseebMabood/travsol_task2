@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agency;
+use App\Models\Balance_Credit;
 use Illuminate\Http\Request;
 use App\Models\CreditRequest;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class CreditReqController extends Controller
             else{
                 return redirect()->back()->with('error','Credit amount range exceeded!');
             }
-            
+
         }
 
 
@@ -47,7 +48,7 @@ class CreditReqController extends Controller
         $data->admin_id = Auth::id();
         $data->admin_name = Auth::user()->name;
         $data->save();
-        return redirect()->back()->with('success','Request sent successfully!'); 
+        return redirect()->back()->with('success','Request sent successfully!');
     }
 
 
@@ -56,7 +57,7 @@ class CreditReqController extends Controller
 
     public function add_credit($id)
     {
-        
+
         $data = CreditRequest::find($id);
         $d = Agency::where('id', $data->agency_id)->first();
         // dd($data->status); //okk
@@ -75,7 +76,7 @@ class CreditReqController extends Controller
            $data->status = '1';
             $data->update();
             // dd($data); //okk
-         
+
             return redirect()->back()->with('success','Credit added successfully!');
         }
         else if($data->credit_req_type=='subt'){
@@ -100,14 +101,70 @@ class CreditReqController extends Controller
 
     public function reject_credit_req($id)
     {
-        
+
         $data = CreditRequest::find($id);
-   
+
            $data->status = '2';
             $data->update();
             // dd($data); //okk
-         
+
             return redirect()->back()->with('error','Balance request rejected!');
-      
+
     }
+
+
+
+
+
+
+
+
+    // merge balance and credit request
+
+
+    public function amount_req(){
+        $agency = Agency::where('manager_id',Auth::id())->first();
+        // dd($agency); //fetch all agency record to whom it is connected
+        return view('balance_credit.index',compact('agency'));
+    }
+
+
+    public function amount_req_sent(Request $request){
+        $data = new Balance_Credit();
+
+        $d = Agency::where('manager_id',Auth::id())->first();
+        // dd($d->amount); //okk
+
+        if($request->req_type =='add'){
+                    // dd('osho add');
+                    $data->req_amount = $request->amount;
+                }
+
+
+        elseif($request->req_type =='subt'){
+            if($request->amount < $d->credit_limit){
+                // dd('osho sub');
+                $data->req_amount = $request->amount;
+            }
+            else{
+                return redirect()->back()->with('error','Credit amount range exceeded!');
+            }
+
+        }
+
+
+
+        // $data->req_amount = $request->amount;
+        $data->amount_type = $request->amount_type;
+        $data->balance_req_type = $request->req_type;
+        $data->agency_id = $request->agency_id;
+        $data->agency_name = $request->agency_name;
+        $data->admin_id = Auth::id();
+        $data->admin_name = Auth::user()->name;
+        $data->save();
+        return redirect()->back()->with('success','Request sent successfully!');
+    }
+
+
+
 }

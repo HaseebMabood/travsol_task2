@@ -15,8 +15,9 @@ use App\Http\Controllers\CreditReqController;
 use App\Http\Controllers\SubAgencyController;
 use App\Http\Controllers\BalanceReqController;
 use App\Http\Controllers\HomeSliderController;
-use App\Http\Controllers\ShowCreditReqController;
+use App\Http\Controllers\ShowAmountReqController;
 
+use App\Http\Controllers\ShowCreditReqController;
 use App\Http\Controllers\SubAgencyListController;
 use App\Http\Controllers\ShowBalanceReqController;
 use App\Http\Controllers\SubAgencyUsersController;
@@ -111,6 +112,9 @@ Route::group(['middleware' => ['role:admin']], function () {
         // show credit req
         Route::get('/credit_index', [ShowCreditReqController::class, 'credit_index']);
 
+        // show credit req
+        Route::get('/amount_requests', [ShowAmountReqController::class, 'amount_requests']);
+
 
          // add or sub credit approval by admin
          Route::get('/add_credit/{id}', [CreditReqController::class, 'add_credit']);
@@ -179,6 +183,12 @@ Route::group(['middleware' => ['role:admin']], function () {
          Route::get('/credit_req', [CreditReqController::class, 'credit_req']);
 
          Route::post('/credit_req_sent', [CreditReqController::class, 'credit_req_sent']);
+
+        //  balance/credit
+         Route::get('/amount_req', [CreditReqController::class, 'amount_req']);
+
+         Route::post('/amount_req_sent', [CreditReqController::class, 'amount_req_sent']);
+
     });
 
     //The following routes is accessable to everyone
@@ -194,7 +204,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     //Clear route cache
  Route::get('/clear-caches', function() {
-    
+
     Artisan::call('route:cache');
 
     Artisan::call('config:cache');

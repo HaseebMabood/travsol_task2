@@ -4,7 +4,7 @@
 @section('heading')
 
 <h1>
-    Credit request
+    Amount request
 
   </h1>
 
@@ -23,15 +23,29 @@
           <!-- /.box-header -->
           <div class="box-body">
 
-            <form role="form" action="{{url('credit_req_sent')}}" method="POST" >
+            <form role="form" action="{{url('amount_req_sent')}}" method="POST" >
 
                 @csrf
               <div class="box-body">
+
+
+
+
+                  <div class="form-group ">
+                    <label for="amount_type">Balance/Credit</label><br>
+                     <select name="amount_type" id="amount_type" class="form-control">
+                        <option value="" disabled selected>--Select an amount type--</option>
+                         <option value="balance">Balance</option>
+                         <option value="credit">Credit</option>
+                     </select>
+                  </div>
+
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Amount Credit in Pkr/</label>
                     <input type="number" class="form-control" name="amount" min="0" max="10000000" placeholder="Enter amount" required>
                   </div>
+
 
                   <div class="form-group ">
                     <label for="req_type">Choose a Request type</label><br>
