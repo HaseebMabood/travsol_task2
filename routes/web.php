@@ -11,12 +11,13 @@ use App\Http\Controllers\HsliderController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\AgentNewController;
 use App\Http\Controllers\PagesCmsController;
+use App\Http\Controllers\AmountReqController;
 use App\Http\Controllers\CreditReqController;
 use App\Http\Controllers\SubAgencyController;
 use App\Http\Controllers\BalanceReqController;
 use App\Http\Controllers\HomeSliderController;
-use App\Http\Controllers\ShowAmountReqController;
 
+use App\Http\Controllers\ShowAmountReqController;
 use App\Http\Controllers\ShowCreditReqController;
 use App\Http\Controllers\SubAgencyListController;
 use App\Http\Controllers\ShowBalanceReqController;
@@ -106,21 +107,21 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('/subagencies_list', SubAgencyListController::class);
 
 
-        // show balance req
-        Route::get('/index', [ShowBalanceReqController::class, 'index']);
+        // // show balance req
+        // Route::get('/index', [ShowBalanceReqController::class, 'index']);
 
-        // show credit req
-        Route::get('/credit_index', [ShowCreditReqController::class, 'credit_index']);
+        // // show credit req
+        // Route::get('/credit_index', [ShowCreditReqController::class, 'credit_index']);
 
-        // show credit req
+        // merged credit/balance
         Route::get('/amount_requests', [ShowAmountReqController::class, 'amount_requests']);
 
 
-         // add or sub credit approval by admin
-         Route::get('/add_credit/{id}', [CreditReqController::class, 'add_credit']);
+        //  // add or sub credit approval by admin
+        //  Route::get('/add_credit/{id}', [CreditReqController::class, 'add_credit']);
 
-         // rejecting credit request
-         Route::get('/reject_credit_req/{id}', [CreditReqController::class, 'reject_credit_req']);
+        //  // rejecting credit request
+        //  Route::get('/reject_credit_req/{id}', [CreditReqController::class, 'reject_credit_req']);
 
 
 
@@ -173,21 +174,21 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 
 
-        // Balance management system
-        Route::get('/balance_req', [BalanceReqController::class, 'balance_req']);
+        // // Balance management system
+        // Route::get('/balance_req', [BalanceReqController::class, 'balance_req']);
 
-        Route::post('/balance_req_sent', [BalanceReqController::class, 'balance_req_sent']);
+        // Route::post('/balance_req_sent', [BalanceReqController::class, 'balance_req_sent']);
 
 
-         // Credit management system
-         Route::get('/credit_req', [CreditReqController::class, 'credit_req']);
+        //  // Credit management system
+        //  Route::get('/credit_req', [CreditReqController::class, 'credit_req']);
 
-         Route::post('/credit_req_sent', [CreditReqController::class, 'credit_req_sent']);
+        //  Route::post('/credit_req_sent', [CreditReqController::class, 'credit_req_sent']);
 
-        //  balance/credit
-         Route::get('/amount_req', [CreditReqController::class, 'amount_req']);
+        // merged balance/credit
+         Route::get('/amount_req', [AmountReqController::class, 'amount_req']);
 
-         Route::post('/amount_req_sent', [CreditReqController::class, 'amount_req_sent']);
+         Route::post('/amount_req_sent', [AmountReqController::class, 'amount_req_sent']);
 
     });
 
