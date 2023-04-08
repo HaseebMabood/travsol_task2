@@ -17,7 +17,7 @@
         <div class="box ">
 
             <div class="box-header">
-                <a href="{{url('/users')}}" class="btn btn-info">Back</a>
+                <a href="{{url('/reg_users')}}" class="btn btn-info">Back</a>
             </div>
 
 

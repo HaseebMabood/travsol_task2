@@ -5,7 +5,7 @@
 
 <h1>
     Create User
-    
+
   </h1>
 
 @endsection
@@ -17,7 +17,7 @@
     </div> --}}
     <!-- /.box-header -->
     <!-- form start -->
-    <form role="form" action="{{route('users.store')}}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{{route('reg_users.store')}}" method="POST" enctype="multipart/form-data">
 
         @csrf
       <div class="box-body">
@@ -52,7 +52,7 @@
           <label for="exampleInputFile">Image</label>
           <input type="file" name="image" id="exampleInputFile">
         </div>
-       
+
       </div>
       <!-- /.box-body -->
 

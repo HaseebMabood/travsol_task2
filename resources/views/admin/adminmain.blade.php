@@ -70,7 +70,7 @@
       </div> --}}
       <!-- /.box -->
 
-      @yield('content')
+      @yield('content') 
 
     </section>
     <!-- /.content -->

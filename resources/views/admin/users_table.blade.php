@@ -31,7 +31,7 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
-                
+
                 @can('assign role')
                 <th>Assign Role</th>
                 @endcan
@@ -56,7 +56,7 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->phone}}</td>
                     <td>{{$user->address}}</td>
-                   
+
                     @can('assign role')
                     <td>
                         <a href="{{url('assign_role_to_user/'.$user->id)}}" type="button" class="btn btn-info">Role</a>

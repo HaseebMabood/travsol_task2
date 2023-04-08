@@ -1,5 +1,5 @@
 @extends('admin.adminmain')
-
+ 
 
 @section('heading')
 
@@ -126,7 +126,7 @@
               <tr>
                 <td>{{$role_perm->slug}}</td>
                 <td>
-                  <form action="{{ route('permission.revoke',[$role->id,$role_perm->id]) }}" method="post" ">
+                  <form action="{{ route('permission.revoke',[$role->id,$role_perm->id]) }}" method="post">
                                         @csrf
                                         @method('delete')
                                        <button type=" submit" class="btn btn-danger " style="margin-left: 10px; "><i class="fa fa-trash btn-anim btn-s" style="height: 10px;"></i></button>

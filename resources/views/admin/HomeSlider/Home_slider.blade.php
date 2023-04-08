@@ -113,7 +113,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
                                                 <label for="inputId">
-                                                    <input type="file" id='inputId' onchange="image_preview();" style="" accept="image/*" name="image" required>
+                                                    <input type="file"  id='inputId' onchange="image_preview();" style="" accept="image/*" name="image" required>
                                                     <img id="img_preview" style="height:100px ;width:100px; display:none;" src="" alt="Image">
                                                     <!-- <img id="imgId" style="width:150px;height:auto; border:1px solid black"> -->
                                                     <!-- <input type="file" name="image" id="exampleInputFile"> -->

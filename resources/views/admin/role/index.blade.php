@@ -53,7 +53,7 @@
                     @foreach ($roles as $role)
                         <tr>
                         
-                            <td>{{$role->name}}</td>
+                            <td>{{$role->name}}</td> 
                         
                             <td class="d-flex">
 

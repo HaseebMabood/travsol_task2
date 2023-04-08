@@ -19,10 +19,10 @@ class RoleController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
+
     }
 
-    
+
     public function index(){
 
         // $roles = Role::whereNotIn('name', ['admin'])->get();
@@ -109,7 +109,7 @@ class RoleController extends Controller
 
         //  dd($role);//okk
         if($role->hasPermissionTo($request->permission)){
-            return back()->with('error','Sorry! Permission exists');
+            return back()->with('error','Sorry! Permission already exists');
         }
         $role->givePermissionTo($request->permission);
         return back()->with('success','Permission assigned!');
@@ -148,9 +148,14 @@ class RoleController extends Controller
         $user = User::find($id);
         // if($user->assignRole($request->role==)){
         //     return back()->with('error','Role already assigned!');
-        // }
-        $user->assignRole($request->role);
+        // } //not working ,use below instead
+        if($user->hasRole($request->role)){
+            return back()->with('error','Role already assigned!');
+        }else
+        {
+       $user->assignRole($request->role);
         return back()->with('success','Role assigned successfully!');
+        }
     }
 
 
@@ -163,7 +168,7 @@ class RoleController extends Controller
 
         //  dd($role);//okk
         if($user->assignRole($role)){
-            
+
             $user->removeRole($role);
             return back()->with('success','Role revoked');
         }

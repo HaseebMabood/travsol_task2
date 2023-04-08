@@ -4,7 +4,7 @@
 @section('heading')
 
 <h1>
-    Balance Request History
+    Amount Request History
 
   </h1>
 
@@ -26,11 +26,11 @@
               <thead>
               <tr>
                 {{-- <th>Id</th> --}}
-                
-                <th>Agency Admin</th> 
+
+                <th>Agency Admin</th>
                 <th>Agency</th>
                 <th>Request Amount</th>
-                <th>Request Type</th>         
+                <th>Request Type</th>
                 <th>Date</th>
 
                 <th>Action</th>
@@ -41,27 +41,27 @@
               <tbody>
 
                 @foreach ($data as $data)
-             
+
                 <tr>
                     <td>{{$data->admin_name}}</td>
                     <td>{{$data->agency_name}}</td>
                     <td>{{$data->req_amount}}</td>
                     <td>{{$data->balance_req_type}}</td>
                     <td>{{$data->created_at}}</td>
-                   
-               
+
+
 
 
                     @if ($data->status == '1')
-                    
+
                         <td>
                             <span class="badge " style="background-color: green">Approved</span>
-                        </td>  
+                        </td>
 
                     @elseif ($data->status == '2')
                         <td>
                             <span class="badge " style="background-color: red">Rejected</span>
-                        </td>  
+                        </td>
 
                     @else
                         <td >
@@ -69,22 +69,22 @@
                             <a href="{{url('add_balance/'.$data->id)}}">
                                 <span class="badge " style="background-color: green">Approve</span></a>
 
-                        
+
                             <a href="{{url('reject_req',$data->id)}}" style="margin-left:10px">
                                 <span class="badge" style="background-color: red" >Reject</span></a>
 
                         </td>
                     @endif
-                       
+
 
                   </tr>
-           
+
                 @endforeach
 
               </tbody>
 
             </table>
-       
+
           </div>
           <!-- /.box-body -->
         </div>
